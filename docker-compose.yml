@@ -1,0 +1,44 @@
+services:
+  # php-fpm 7.3
+  php:
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    container_name: php
+    restart: unless-stopped
+    volumes:
+      - ./app:/app
+
+  # nginx
+  nginx:
+    image: nginx:1.21.3
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./app:/app
+    environment:
+      - TZ=Asia/Taipei
+
+  # MySQL
+  mysql:
+    image: mysql:5.7.36
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./testdb_init.sh:/tmp/testdb_init.sh:ro
+      - mysql:/var/lib/mysql:rw
+      - ./.my.cnf:/root/.my.cnf:ro
+      - ./test_db:/tmp/test_db:ro
+      - ./mysql_backup:/opt/mysql_backup:rw
+      - ./mysql_backup.sh:/opt/mysql_backup.sh:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+volumes:
+  mysql:
