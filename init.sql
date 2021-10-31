@@ -1,6 +1,6 @@
-CREATE DATABASE laravel;
-CREATE USER 'laravel'@'%' IDENTIFIED BY 'Zs}qAPTBJ}tQr';
-GRANT ALL PRIVILEGES ON laravel.* TO 'laravel'@'%';
+CREATE DATABASE sampleapp;
+CREATE USER 'sampleapp'@'%' IDENTIFIED BY 'Zs}qAPTBJ}tQr';
+GRANT ALL PRIVILEGES ON sampleapp.* TO 'sampleapp'@'%';
 
 CREATE USER 'mysqlbackup'@'%' IDENTIFIED BY '_d{NJ4i281Pp1';
 GRANT SELECT, LOCK TABLES ON *.* TO 'mysqlbackup'@'%';
