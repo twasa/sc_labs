@@ -24,5 +24,14 @@ docker-compose up -d
 ```
 
 ## test
-- open http://localhost/posts for visit Laravel sample CRUD site
-- run /opt/mysql_backup.sh in mysql container for exec backup procedure
+- open http://localhost/posts for visit Laravel sample CRUD site in browser
+
+- Import sample database (testdb) and test
+```shell
+docker exec -it mysql /tmp/testdb_init.sh
+```
+
+- exec mysql backup procedure
+```shell
+docker exec -it mysql /opt/mysql_backup.sh
+```
