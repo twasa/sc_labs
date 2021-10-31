@@ -24,6 +24,11 @@ docker-compose up -d
 ```
 
 ## test
+- run db migrations for sample CRUD app
+```shell
+docker exec -it php /app/artisan migrate
+```
+
 - open http://localhost/posts for visit Laravel sample CRUD site in browser
 
 - Import sample database (testdb) and test
@@ -31,7 +36,8 @@ docker-compose up -d
 docker exec -it mysql /tmp/testdb_init.sh
 ```
 
-- exec mysql backup procedure
+- execute mysql backup script
 ```shell
 docker exec -it mysql /opt/mysql_backup.sh
+ls -al /opt/mysql_backup
 ```
